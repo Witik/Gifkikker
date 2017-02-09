@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="nl">
+    <title>Nieuwe of Bestaande klant?</title>
+    <!--/*/ <th:block th:include="../fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <!--/*/ <th:block th:include="../fragments/header :: header"></th:block> /*/-->
+    <div>
+        <h1>Verzendadres</h1>
+        <form th:object="${user.address}" th:action="${'/order/address/' + user.id}" method="post" class="form-signin">
+            <label>Naam ontvanger:
+                <input type="text" name="recipient" th:value="*{#strings.toString(recipient)}" class="form-control" required="required"/>
+            </label><br/>
+            <label>Stad:
+                <input type="text" name="city" th:value="*{#strings.toString(city)}" class="form-control" required="required"/>
+            </label><br/>
+            <label>Postcode:
+                <input type="text" name="postalCode" th:value="*{#strings.toString(postalCode)}" class="form-control" required="required"/>
+            </label><br/>
+            <label>Straatnaam:
+                <input type="text" name="street" th:value="*{#strings.toString(street)}" class="form-control" required="required"/>
+            </label><br/>
+            <label>Huisnummer:
+                <input type="number" name="houseNumber" th:value="*{#strings.toString(houseNumber)}" class="form-control" required="required"/>
+            </label><br/>
+            <label>Nummer Toevoeging:
+                <input type="text" name="numberAddition" th:value="*{#strings.toString(numberAddition)}" class="form-control"/>
+            </label><br/>
+            <button type="submit" class="btn btn-default">Volgende Stap</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

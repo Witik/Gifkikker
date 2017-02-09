@@ -14,7 +14,7 @@ public class StockItem {
     private int id;
 
     private String name;
-    private double price;
+    private Euro price;
     private int stock;
     private String description;
 
@@ -34,12 +34,16 @@ public class StockItem {
         this.name = name;
     }
 
-    public double getPrice() {
+    public Euro getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Euro price) {
         this.price = price;
+    }
+
+    public void setPrice(int euro, int cents) {
+        this.price = new Euro(euro, cents);
     }
 
     public int getStock() {

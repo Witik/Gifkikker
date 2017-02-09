@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="nl">
+    <title>Nieuwe of Bestaande klant?</title>
+    <!--/*/ <th:block th:include="../fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <!--/*/ <th:block th:include="../fragments/header :: header"></th:block> /*/-->
+    <h1>Bevestig bestelling</h1>
+    <label>Ontvanger</label>
+    <span th:text="${order.address.recipient}"></span><br/>
+    <label>Stad</label>
+    <span th:text="${order.address.city}"></span><br/>
+    <label>Postcode</label>
+    <span th:text="${order.address.postalCode}"></span><br/>
+    <label>Straat</label>
+    <span th:text="${order.address.street}"></span><br/>
+    <label>Huisnummer</label>
+    <span th:text="${order.address.houseNumber}"></span><br/>
+    <label>Toevoeging</label>
+    <span th:text="${order.address.numberAddition}"></span><br/>
+
+    <table class="table table-striped" th:if="${not #lists.isEmpty(order.products)}">
+        <tr>
+            <th>Naam</th>
+            <th>Aantal</th>
+            <th>Prijs</th>
+        </tr>
+        <tr th:each="productEntry : ${order.products}">
+            <td th:text="${productEntry.getProduct().name}">Naam</td>
+            <td th:text="${productEntry.getAmount()}">Aantal</td>
+            <td th:text="${'&euro;'+productEntry.getProduct().price.times(productEntry.getAmount())}">Prijs</td>
+        </tr>
+    </table>
+    <label>Totaal:</label>
+    <span th:text="${'&euro;'+order.calculateTotalCosts()}"></span><br/>
+    <label>Betaalmethode:</label>
+    <span th:text="${order.paymentMethod}">Onbekend</span><br/>
+    <label>Verzendmethode:</label>
+    <span th:text="${order.shippingMethod}">Onbekend</span><br/>
+    <a role="button" class="btn btn-default" th:href="${'/order/submit/'+user.id}">Bestellen</a>
+</div>
+</body>
+</html>

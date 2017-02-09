@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="nl">
+    <title>Nieuwe of Bestaande klant?</title>
+    <!--/*/ <th:block th:include="../fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <!--/*/ <th:block th:include="../fragments/header :: header"></th:block> /*/-->
+    <div>
+        Voordat u kunt bestellen moet u inloggen.
+        <a role="button" class="btn btn-default" th:href="${'/login'}">Bestaande Klant</a>
+        <a role="button" class="btn btn-default" th:href="${'/register'}">Nieuwe Klant</a>
+    </div>
+</div>
+</body>
+</html>

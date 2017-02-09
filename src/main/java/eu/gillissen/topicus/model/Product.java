@@ -16,7 +16,7 @@ public class Product {
 
     private String name;
     private String description;
-    private double price;
+    private Euro price;
     private String imageUrl;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -46,12 +46,16 @@ public class Product {
         this.description = description;
     }
 
-    public double getPrice() {
+    public Euro getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Euro price) {
         this.price = price;
+    }
+
+    public void setPrice(int euro, int cents) {
+        this.price = new Euro(euro, cents);
     }
 
     public String getImageUrl() {
@@ -68,5 +72,14 @@ public class Product {
 
     public void setItems(List<ProductItems> items) {
         this.items = items;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Product) {
+            Product other = (Product) obj;
+            return other.getId() == this.getId();
+        }
+        return false;
     }
 }

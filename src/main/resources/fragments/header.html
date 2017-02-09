@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head lang="en">
+<html lang="nl" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
     <!--/*/ <th:block th:include="../fragments/headerinc :: head"></th:block> /*/-->
 </head>
 <body>
@@ -13,9 +13,10 @@
                     <a class="navbar-brand" href="#" th:href="@{/}">Homepagina</a>
                     <ul class="nav navbar-nav">
                         <li><a href="#" th:href="@{/products}">Alle Producten</a></li>
-                        <li><a href="#" th:href="@{/login}" sec:authorize="!isAuthenticated()">Log in</a></li>
-                        <li><a href="#" th:href="@{/logout}" sec:authorize="isAuthenticated()">Log uit</a></li>
-                        <li><span sec:authorize="isAuthenticated()">Ingelogd als <span sec:authentication="name"></span></span></li>
+                        <li><a href="#" th:href="@{/cart}">Winkelwagen</a></li>
+                        <li sec:authorize="!isAuthenticated()"><a href="#" th:href="@{/login}">Log in</a></li>
+                        <li sec:authorize="isAuthenticated()"><a href="#" th:href="@{/logout}">Log uit</a></li>
+                        <li sec:authorize="isAuthenticated()">Ingelogd als <span sec:authentication="name"></span></li>
                     </ul>
                 </div>
             </div>

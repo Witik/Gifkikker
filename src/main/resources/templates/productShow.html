@@ -1,9 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head lang="nl">
-
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+<head>
     <title th:text="${product.name}">Cool product</title>
-
     <!--/*/ <th:block th:include="../fragments/headerinc :: head"></th:block> /*/-->
 </head>
 <body>
@@ -11,30 +9,38 @@
     <!--/*/ <th:block th:include="../fragments/header :: header"></th:block> /*/-->
     <div class="product">
         <label>Naam:</label>
-        <span th:text="${product.name}"></span><br />
+        <span th:text="${product.name}"></span><br/>
 
         <label>Beschrijving:</label>
-        <span th:text="${product.description}"></span><br />
+        <span th:text="${product.description}"></span><br/>
 
         <label>Prijs:</label>
-        <span th:text="'&euro;' + ${product.price}"></span><br />
+        <span th:text="${'&euro;' + product.price}"></span><br/>
         <div th:if="${not #lists.isEmpty(product.items)}">
-        <label>Inhoud:</label>
-        <table class="table table-striped">
-            <tr>
-                <th>Naam</th>
-                <th>Omschrijving</th>
-                <th>Aantal</th>
-                <th>Voorraad</th>
-            </tr>
-            <tr th:each="prodItem : ${product.items}">
-                <td th:text="${prodItem.item.name}">Naam</td>
-                <td th:text="${prodItem.item.description}">Omschrijving</td>
-                <td th:text="${prodItem.amount}">Aantal</td>
-                <td th:text="${prodItem.item.stock}">Voorraad</td>
-            </tr>
-        </table>
-    </div>
+            <label>Inhoud:</label>
+            <table class="table table-striped">
+                <tr>
+                    <th>Naam</th>
+                    <th>Omschrijving</th>
+                    <th>Aantal</th>
+                    <th>Voorraad</th>
+                </tr>
+                <tr th:each="prodItem : ${product.items}">
+                    <td th:text="${prodItem.item.name}">Naam</td>
+                    <td th:if="${prodItem.item.class.name != 'eu.gillissen.topicus.model.BeerItem'}"
+                        th:text="${prodItem.item.description}">Omschrijving
+                    </td>
+                    <td th:if="${prodItem.item.class.name == 'eu.gillissen.topicus.model.BeerItem'}">
+                        <span th:text="${prodItem.item.description}"></span><br/>
+                        <span th:text="${prodItem.item.volume + 'cl'}"></span><br/>
+                        <span th:text="${prodItem.item.alcoholPercentage + '% alc'}"></span><br/>
+                        <span th:text="${prodItem.item.beerType + 'bier'}"></span>
+                    </td>
+                    <td th:text="${prodItem.amount}">Aantal</td>
+                    <td th:text="${prodItem.item.stock}">Voorraad</td>
+                </tr>
+            </table>
+        </div>
     </div>
 </div>
 </body>

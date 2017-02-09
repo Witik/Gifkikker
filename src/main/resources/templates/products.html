@@ -1,9 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head lang="nl">
-
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+<head>
     <title>Mooie kikker producten</title>
-
     <!--/*/ <th:block th:include="../fragments/headerinc :: head"></th:block> /*/-->
 </head>
 <body>
@@ -22,13 +20,18 @@
             <tr th:each="product : ${products}">
                 <td th:text="${product.name}">Id</td>
                 <td th:text="${product.description}">Description</td>
-                <td th:text="${product.price}">Price</td>
-                <td><a href="#" th:href="${ '/product/show/' + product.id}">Bekijk</a></td>
-                <td><a href="#">Bestel</a></td>
+                <td th:text="${'&euro;'+product.price}">Price</td>
+                <td><a href="#" th:href="${'/product/show/' + product.id}">Bekijk</a></td>
+                <td><a href="#" th:onclick="${'addToCart(' + product.id+ ')'}">Bestel</a></td>
             </tr>
         </table>
 
     </div>
 </div>
+<script>
+    function addToCart(id) {
+        $.post("/cart/add/" + id);
+    }
+</script>
 </body>
 </html>

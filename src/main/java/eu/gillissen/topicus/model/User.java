@@ -11,9 +11,14 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
+    public User() {
+        address = new Address();
+    }
+
     private String name;
     private String password;
     private String role;
+    private Address address;
 
     public int getId() {
         return id;
@@ -45,5 +50,13 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 }

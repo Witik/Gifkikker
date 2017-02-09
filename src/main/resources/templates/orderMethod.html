@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="nl">
+    <title>Nieuwe of Bestaande klant?</title>
+    <!--/*/ <th:block th:include="../fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <h1>betaal- en verzendmethode</h1>
+    <form th:action="${'/order/method/' + user.id }" method="post" class="form-signin">
+        <select name="shippingMethod" required="required">
+            <option>Afhalen</option>
+            <option>Bezorgen bij Topicus</option>
+            <option>Thuisbezorging via TNT post</option>
+        </select>
+        <select name="paymentMethod" required="required">
+            <option>Contant</option>
+            <option>Vooruitbetaling</option>
+            <option>Op rekening</option>
+        </select>
+        <button type="submit" class="btn btn-default">Volgende Stap</button>
+    </form>
+</div>
+</body>
+</html>

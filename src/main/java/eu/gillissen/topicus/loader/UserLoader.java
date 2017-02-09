@@ -1,5 +1,6 @@
 package eu.gillissen.topicus.loader;
 
+import eu.gillissen.topicus.model.Address;
 import eu.gillissen.topicus.model.User;
 import eu.gillissen.topicus.repositories.UserRepository;
 import org.apache.log4j.Logger;
@@ -26,6 +27,22 @@ public class UserLoader implements ApplicationListener<ContextRefreshedEvent> {
         admin.setPassword("admin");
         admin.setRole("ADMIN");
         User saved = userRepository.save(admin);
+        logger.info("Saved " + saved.getName() + " - " + saved.getId());
+
+        Address address = new Address();
+        address.setCity("Deventer");
+        address.setHouseNumber("69");
+        address.setNumberAddition("b");
+        address.setPostalCode("1337XD");
+        address.setStreet("Edwinstraat");
+        address.setRecipient("Edwin van de Ridder");
+
+        User edwin = new User();
+        edwin.setName("edwin");
+        edwin.setPassword("edwin");
+        edwin.setRole("USER");
+        edwin.setAddress(address);
+        saved = userRepository.save(edwin);
         logger.info("Saved " + saved.getName() + " - " + saved.getId());
 
         User user = new User();

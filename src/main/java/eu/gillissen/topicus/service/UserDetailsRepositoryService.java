@@ -25,7 +25,7 @@ public class UserDetailsRepositoryService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        User matchUser = StreamSupport.stream(userRepository.findAll().spliterator(), false).filter(user -> user.getName().equals(s)).findAny().orElseThrow(() -> new UsernameNotFoundException(s));
+        User matchUser = StreamSupport.stream(userRepository.findAll().spliterator(), false).filter(user -> user.getName().equalsIgnoreCase(s)).findAny().orElseThrow(() -> new UsernameNotFoundException(s));
         return userToUserDetails(matchUser);
     }
 

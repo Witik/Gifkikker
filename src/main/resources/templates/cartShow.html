@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Jouw Winkelwagentje</title>
+    <!--/*/ <th:block th:include="../fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <!--/*/ <th:block th:include="../fragments/header :: header"></th:block> /*/-->
+    <div class="cart">
+        <h1>Winkelwagen</h1>
+        <label>Inhoud:</label>
+        <span th:if="${#maps.isEmpty(cart.cartContents)}">LEEG!</span><br/>
+        <table class="table table-striped" th:if="${not #maps.isEmpty(cart.cartContents)}">
+            <tr>
+                <th>Naam</th>
+                <th>Aantal</th>
+                <th>Prijs</th>
+                <th>Bekijk</th>
+                <th>Verwijder</th>
+            </tr>
+            <tr th:each="productEntry : ${cart.getCartContents()}">
+                <td th:text="${productEntry.getKey().name}">Naam</td>
+                <td th:text="${productEntry.getValue()}">Aantal</td>
+                <td th:text="${'&euro;'+productEntry.getKey().price.times(productEntry.getValue())}">Prijs</td>
+                <td><a href="#" th:href="${'/product/show/'+productEntry.getKey().id}">Bekijk</a></td>
+                <td><a href="#" th:href="${'/cart/remove/'+productEntry.getKey().id}">Verwijder</a></td>
+            </tr>
+        </table>
+        <label>Totaal:</label>
+        <span th:text="${'&euro;'+cart.getTotalCosts()}"></span><br/>
+        <a role="button" class="btn btn-default" th:if="${not #maps.isEmpty(cart.cartContents)}" th:href="${'/order'}">Bestellen</a>
+    </div>
+</div>
+</body>
+</html>
