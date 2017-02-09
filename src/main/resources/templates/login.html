@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login Form</title>
+    <!--/*/ <th:block th:include="../fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <!--/*/ <th:block th:include="../fragments/header :: header"></th:block> /*/-->
+    <div th:if="${param.error}">
+        <label style="color:red">Username of wachtwoord incorrect.</label>
+    </div>
+    <div th:if="${param.logout}">
+        <label>
+            Je bent uitgelogd.
+        </label>
+    </div>
+
+    <form th:action="@{/login}" method="post" class="form-signin">
+        <label> Username : <input type="text" name="username" class="form-control" required="required"/> </label><br />
+        <label> Wachtwoord : <input type="password" name="password" class="form-control" required="required"/> </label><br />
+        <button type="submit" class="btn btn-default">Log In</button>
+    </form>
+</div>
+</body>
+</html>

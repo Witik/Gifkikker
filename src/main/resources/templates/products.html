@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="nl">
+
+    <title>Mooie kikker producten</title>
+
+    <!--/*/ <th:block th:include="../fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <!--/*/ <th:block th:include="../fragments/header :: header"></th:block> /*/-->
+    <div th:if="${not #lists.isEmpty(products)}">
+        <h2>Alle producten</h2>
+        <table class="table table-striped">
+            <tr>
+                <th>Naam</th>
+                <th>Omschrijving</th>
+                <th>Prijs</th>
+                <th>Bekijk</th>
+                <th>Bestel</th>
+            </tr>
+            <tr th:each="product : ${products}">
+                <td th:text="${product.name}">Id</td>
+                <td th:text="${product.description}">Description</td>
+                <td th:text="${product.price}">Price</td>
+                <td><a href="#" th:href="${ '/product/show/' + product.id}">Bekijk</a></td>
+                <td><a href="#">Bestel</a></td>
+            </tr>
+        </table>
+
+    </div>
+</div>
+</body>
+</html>
