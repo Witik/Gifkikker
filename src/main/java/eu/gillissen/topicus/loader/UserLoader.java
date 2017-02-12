@@ -9,6 +9,9 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
+/**
+ * Populates the database with user-information.
+ */
 @Component
 public class UserLoader implements ApplicationListener<ContextRefreshedEvent> {
     private Logger logger = Logger.getLogger(UserLoader.class);

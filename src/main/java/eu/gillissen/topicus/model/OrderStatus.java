@@ -2,6 +2,9 @@ package eu.gillissen.topicus.model;
 
 import javax.persistence.Embeddable;
 
+/**
+ * Status of the Order.
+ */
 @Embeddable
 public enum OrderStatus {
     BEING_PROCESSED,

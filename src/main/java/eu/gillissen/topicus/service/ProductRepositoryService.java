@@ -5,6 +5,9 @@ import eu.gillissen.topicus.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+/**
+ * Service for the Product repository.
+ */
 @Component
 public class ProductRepositoryService implements ProductService {
     private ProductRepository productRepository;

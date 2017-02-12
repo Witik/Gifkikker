@@ -6,6 +6,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 
+/**
+ * Order and products join-table object.
+ */
 @Entity
 public class OrderProducts {
 

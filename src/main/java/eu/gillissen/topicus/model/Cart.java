@@ -5,6 +5,9 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
+/**
+ * The shopping cart.
+ */
 public class Cart {
     private Map<Product, Integer> cartContents;
 
@@ -20,6 +23,11 @@ public class Cart {
         cartContents = new HashMap<>();
     }
 
+    /**
+     * Adds a new product, or increments an existing product's counter.
+     *
+     * @param product The product to add.
+     */
     public void addProduct(Product product) {
         Optional<Product> productOptional = cartContents.keySet().stream().filter(inCart -> inCart.equals(product)).findAny();
         if (productOptional.isPresent()) {
@@ -29,17 +37,23 @@ public class Cart {
         }
     }
 
-    public void setProductCount(Product product, int count) {
-        cartContents.put(product, count);
-    }
-
+    /**
+     * Calculates and returns the total costs of the cart-contents.
+     *
+     * @return
+     */
     public Euro getTotalCosts() {
         return cartContents.entrySet().stream()
                 .map(productIntegerEntry ->
                         productIntegerEntry.getKey().getPrice().times(productIntegerEntry.getValue()))
-                .reduce(Euro::plus).orElse(new Euro());
+                .reduce(Euro::plus).orElse(new Euro(0, 0));
     }
 
+    /**
+     * Removes a product from the cart.
+     *
+     * @param product
+     */
     public void removeProduct(Product product) {
         Optional<Product> productOptional = cartContents.keySet().stream().filter(inCart -> inCart.equals(product)).findAny();
         productOptional.ifPresent(inCart -> cartContents.remove(inCart));

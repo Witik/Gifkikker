@@ -6,6 +6,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 
+/**
+ * Single items for which stock is kept track of.
+ */
 @Entity
 @Inheritance
 public class StockItem {

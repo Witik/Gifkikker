@@ -2,10 +2,22 @@ package eu.gillissen.topicus.model;
 
 import javax.persistence.Entity;
 
+/**
+ * An item which contains beer.
+ */
 @Entity
 public class BeerItem extends StockItem {
+    /**
+     * Volume in centiliters.
+     */
     private int volume;
+    /**
+     * Percentage of alcohol.
+     */
     private double alcoholPercentage;
+    /**
+     * Type of beer, e.g.: Grolsch, Heineken, Gifkikker.
+     */
     private String beerType;
 
     public int getVolume() {

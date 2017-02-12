@@ -1,5 +1,8 @@
-package eu.gillissen.topicus.form;
+package eu.gillissen.topicus.model.form;
 
+/**
+ * Data object to map the result of the method step to.
+ */
 public class OrderMethods {
     private String paymentMethod;
 

@@ -2,6 +2,9 @@ package eu.gillissen.topicus.model;
 
 import javax.persistence.Embeddable;
 
+/**
+ * Address information.
+ */
 @Embeddable
 public class Address {
 

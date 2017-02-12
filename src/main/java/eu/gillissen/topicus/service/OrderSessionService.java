@@ -2,9 +2,9 @@ package eu.gillissen.topicus.service;
 
 import eu.gillissen.topicus.model.Address;
 import eu.gillissen.topicus.model.Cart;
-import eu.gillissen.topicus.model.WebOrder;
 import eu.gillissen.topicus.model.OrderProducts;
 import eu.gillissen.topicus.model.OrderStatus;
+import eu.gillissen.topicus.model.WebOrder;
 import eu.gillissen.topicus.repositories.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -14,6 +14,9 @@ import org.springframework.web.context.WebApplicationContext;
 
 import java.util.stream.Collectors;
 
+/**
+ * Order service, scoped to the client session.
+ */
 @Component
 @Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.INTERFACES)
 public class OrderSessionService implements OrderService {

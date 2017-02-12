@@ -8,6 +8,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.stream.StreamSupport;
 
+/**
+ * Repository service for Users.
+ */
 @Component
 public class UserRepositoryService implements UserService {
 

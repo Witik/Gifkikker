@@ -1,6 +1,6 @@
 package eu.gillissen.topicus.controller;
 
-import eu.gillissen.topicus.form.OrderMethods;
+import eu.gillissen.topicus.model.form.OrderMethods;
 import eu.gillissen.topicus.model.Address;
 import eu.gillissen.topicus.model.User;
 import eu.gillissen.topicus.service.OrderService;
@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.security.Principal;
 
+/**
+ * Controller for of the order proces.
+ */
 @Controller
 public class OrderController {
 
@@ -26,6 +29,13 @@ public class OrderController {
         this.orderService = orderService;
     }
 
+    /**
+     * Mapping for the initial order page, checks for login, redirects otherwise.
+     *
+     * @param principal The login id.
+     * @param model     The view model.
+     * @return the Thymleaf template name for the next step.
+     */
     @RequestMapping("/order")
     public String order(Principal principal, Model model) {
         if (principal == null) {
@@ -35,7 +45,13 @@ public class OrderController {
         }
     }
 
-
+    /**
+     * Mapping for the address information step
+     *
+     * @param principal The login id.
+     * @param model     The view model.
+     * @return the Thymleaf template name for the next step.
+     */
     @RequestMapping("/order/address")
     public String orderAddress(Principal principal, Model model) {
         User user = userService.getUserByUsername(principal.getName());
@@ -47,11 +63,19 @@ public class OrderController {
         return "orderAddress";
     }
 
+    /**
+     * The mapping for the result of the address step
+     *
+     * @param principal The login id.
+     * @param model     The view model.
+     * @param userId    The current user-id.
+     * @param address   The order-address.
+     * @return the Thymleaf template name for the next step.
+     */
     @RequestMapping(value = "/order/address/{userId}", method = RequestMethod.POST)
     public String orderAddressConfirm(Principal principal, Model model, @PathVariable Integer userId, Address address) {
         User user = userService.getUserByUsername(principal.getName());
         if (user.getId() == userId) {
-            user.setAddress(address);
             orderService.setAddress(userId, address);
             model.addAttribute("user", user);
             return "orderMethod";
@@ -60,6 +84,15 @@ public class OrderController {
         }
     }
 
+    /**
+     * The mapping for the result of the method step.
+     *
+     * @param principal    The login id.
+     * @param model        The view model.
+     * @param userId       The current user-id.
+     * @param orderMethods The order-methods.
+     * @return the Thymleaf template name for the next step.
+     */
     @RequestMapping(value = "/order/method/{userId}", method = RequestMethod.POST)
     public String orderMethodConfirm(Principal principal, Model model, @PathVariable Integer userId, OrderMethods orderMethods) {
         User user = userService.getUserByUsername(principal.getName());
@@ -75,6 +108,14 @@ public class OrderController {
         }
     }
 
+    /**
+     * The mapping for the result of the confirm step.
+     *
+     * @param principal The user-login.
+     * @param model     The view model.
+     * @param userId    The current user-id.
+     * @return The Thymleaf template name for the next step.
+     */
     @RequestMapping("/order/submit/{userId}")
     public String orderAddress(Principal principal, Model model, @PathVariable Integer userId) {
         User user = userService.getUserByUsername(principal.getName());

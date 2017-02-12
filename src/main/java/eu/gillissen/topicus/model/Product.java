@@ -8,6 +8,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import java.util.List;
 
+/**
+ * A product on sale in the webshop.
+ */
 @Entity
 public class Product {
     @Id

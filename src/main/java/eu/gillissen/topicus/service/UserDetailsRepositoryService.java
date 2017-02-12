@@ -13,6 +13,9 @@ import org.springframework.stereotype.Component;
 import java.util.Collection;
 import java.util.stream.StreamSupport;
 
+/**
+ * Repository service for user details.
+ */
 @Component
 public class UserDetailsRepositoryService implements UserDetailsService {
 
