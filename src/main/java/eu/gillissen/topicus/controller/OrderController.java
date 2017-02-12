@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -41,6 +40,9 @@ public class OrderController {
     public String orderAddress(Principal principal, Model model) {
         User user = userService.getUserByUsername(principal.getName());
         orderService.deleteOrder(user.getId());
+        if (user.getAddress() == null) {
+            user.setAddress(new Address());
+        }
         model.addAttribute("user", user);
         return "orderAddress";
     }
@@ -49,12 +51,12 @@ public class OrderController {
     public String orderAddressConfirm(Principal principal, Model model, @PathVariable Integer userId, Address address) {
         User user = userService.getUserByUsername(principal.getName());
         if (user.getId() == userId) {
+            user.setAddress(address);
             orderService.setAddress(userId, address);
             model.addAttribute("user", user);
             return "orderMethod";
         } else {
-            model.addAttribute("user", user);
-            return "orderAddress";
+            return orderAddress(principal, model);
         }
     }
 
@@ -64,7 +66,7 @@ public class OrderController {
         if (user.getId() == userId) {
             orderService.setPaymentMethod(userId, orderMethods.getPaymentMethod());
             orderService.setShippingMethod(userId, orderMethods.getShippingMethod());
-            model.addAttribute("order",orderService.getOrder(userId));
+            model.addAttribute("order", orderService.getOrder(userId));
             model.addAttribute("user", user);
             return "orderConfirm";
         } else {
@@ -80,7 +82,7 @@ public class OrderController {
             orderService.submitOrder(userId);
             return "orderSubmitted";
         } else {
-            model.addAttribute("order",orderService.getOrder(userId));
+            model.addAttribute("order", orderService.getOrder(userId));
             model.addAttribute("user", user);
             return "orderConfirm";
         }
