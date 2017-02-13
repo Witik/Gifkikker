@@ -7,7 +7,7 @@
 <body>
 <div class="container">
     <h1>betaal- en verzendmethode</h1>
-    <form th:action="${'/order/method/' + user.id }" method="post" class="form-signin">
+    <form th:action="${'/order/method/' + user.id }" method="post">
         <select name="shippingMethod" required="required">
             <option>Afhalen</option>
             <option>Bezorgen bij Topicus</option>

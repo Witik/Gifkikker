@@ -14,4 +14,11 @@ public interface UserService {
      * @return a User object or null if it doesn't exist.
      */
     User getUserByUsername(String name);
+
+    /**
+     * Saves a new User.
+     *
+     * @param user the user to save.
+     */
+    void save(User user);
 }

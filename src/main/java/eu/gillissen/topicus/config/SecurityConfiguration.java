@@ -25,7 +25,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 "/products", "/product/show/*",
                 "/console/**", //H2 console
                 "/cart/**",
-                "/order")
+                "/order",
+                "/register")
                 .permitAll().anyRequest().authenticated()
                 .and().authorizeRequests().antMatchers("/order/**" +
                 "/user/**")
@@ -42,7 +43,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     /**
      * Configures the user-authentication service.
-     * @param auth The AuthenticationManager which is configured.
+     *
+     * @param auth               The AuthenticationManager which is configured.
      * @param userDetailsService The service that provides the user-details.
      * @throws Exception when AuthenticationManagerBuilder::userDetailsService fails
      */

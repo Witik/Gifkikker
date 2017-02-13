@@ -25,4 +25,9 @@ public class UserRepositoryService implements UserService {
     public User getUserByUsername(String name) {
         return StreamSupport.stream(userRepository.findAll().spliterator(), false).filter(user -> user.getName().equals(name)).findAny().orElseThrow(() -> new UsernameNotFoundException(name));
     }
+
+    @Override
+    public void save(User user) {
+        userRepository.save(user);
+    }
 }
