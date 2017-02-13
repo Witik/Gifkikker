@@ -5,6 +5,7 @@ import eu.gillissen.topicus.model.form.UserRegistration;
 import eu.gillissen.topicus.service.UserService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,8 +41,9 @@ public class UserController {
      *
      * @return the Thymleaf register template name
      */
-    @RequestMapping("/register")
+    @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String register() {
+        logger.info("register");
         return "register";
     }
 
@@ -53,22 +55,25 @@ public class UserController {
      */
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String register(Model model, UserRegistration userRegistration) {
-        if (userService.getUserByUsername(userRegistration.getName()) == null) {
+        logger.info("register request");
+        try {
+            userService.getUserByUsername(userRegistration.getUsername());
             model.addAttribute("error", "name");
             logger.info("name error");
             return "register";
+        } catch (UsernameNotFoundException e) {
+            if (!userRegistration.getPassword().equals(userRegistration.getPasswordCheck())) {
+                model.addAttribute("error", "pass");
+                logger.info("pass error");
+                return "register";
+            }
+            User user = new User();
+            user.setName(userRegistration.getUsername());
+            user.setPassword(userRegistration.getPassword());
+            user.setRole("USER");
+            userService.save(user);
+            logger.info(user.getName() + " registered");
+            return "redirect:/login";
         }
-        if (!userRegistration.getPassword().equals(userRegistration.getPasswordCheck())) {
-            model.addAttribute("error", "pass");
-            logger.info("pass error");
-            return "register";
-        }
-        User user = new User();
-        user.setName(userRegistration.getName());
-        user.setPassword(userRegistration.getPassword());
-        user.setRole("USER");
-        userService.save(user);
-        logger.info(user.getName() + " registered");
-        return "redirect:/login";
     }
 }

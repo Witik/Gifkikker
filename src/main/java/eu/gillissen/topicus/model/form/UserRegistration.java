@@ -4,16 +4,16 @@ package eu.gillissen.topicus.model.form;
  * Data object to map the result of a user registration to.
  */
 public class UserRegistration {
-    private String name;
+    private String username;
     private String password;
     private String passwordCheck;
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String name) {
+        this.username = name;
     }
 
     public String getPassword() {
