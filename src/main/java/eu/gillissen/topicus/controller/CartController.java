@@ -26,7 +26,7 @@ public class CartController {
      * Mapping for shopping cart view
      *
      * @param model view model
-     * @return Thymleaf template name
+     * @return Thymeleaf template name
      */
     @RequestMapping("/cart")
     public String viewCart(Model model) {
@@ -39,7 +39,7 @@ public class CartController {
      *
      * @param model     view model
      * @param productId The id of the removed product.
-     * @return Thymleaf template name
+     * @return Thymeleaf template name
      */
     @RequestMapping("/cart/remove/{productId}")
     public String removeProduct(Model model, @PathVariable Integer productId) {

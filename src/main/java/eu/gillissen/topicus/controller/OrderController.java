@@ -34,7 +34,7 @@ public class OrderController {
      *
      * @param principal The login id.
      * @param model     The view model.
-     * @return the Thymleaf template name for the next step.
+     * @return the Thymeleaf template name for the next step.
      */
     @RequestMapping("/order")
     public String order(Principal principal, Model model) {
@@ -50,7 +50,7 @@ public class OrderController {
      *
      * @param principal The login id.
      * @param model     The view model.
-     * @return the Thymleaf template name for the next step.
+     * @return the Thymeleaf template name for the next step.
      */
     @RequestMapping("/order/address")
     public String orderAddress(Principal principal, Model model) {
@@ -70,7 +70,7 @@ public class OrderController {
      * @param model     The view model.
      * @param userId    The current user-id.
      * @param address   The order-address.
-     * @return the Thymleaf template name for the next step.
+     * @return the Thymeleaf template name for the next step.
      */
     @RequestMapping(value = "/order/address/{userId}", method = RequestMethod.POST)
     public String orderAddressConfirm(Principal principal, Model model, @PathVariable Integer userId, Address address) {
@@ -91,7 +91,7 @@ public class OrderController {
      * @param model        The view model.
      * @param userId       The current user-id.
      * @param orderMethods The order-methods.
-     * @return the Thymleaf template name for the next step.
+     * @return the Thymeleaf template name for the next step.
      */
     @RequestMapping(value = "/order/method/{userId}", method = RequestMethod.POST)
     public String orderMethodConfirm(Principal principal, Model model, @PathVariable Integer userId, OrderMethods orderMethods) {
@@ -114,7 +114,7 @@ public class OrderController {
      * @param principal The user-login.
      * @param model     The view model.
      * @param userId    The current user-id.
-     * @return The Thymleaf template name for the next step.
+     * @return The Thymeleaf template name for the next step.
      */
     @RequestMapping("/order/submit/{userId}")
     public String orderAddress(Principal principal, Model model, @PathVariable Integer userId) {

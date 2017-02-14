@@ -25,7 +25,7 @@ public class ProductController {
      * Create product view.
      *
      * @param model view model.
-     * @return the Thymleaf template name.
+     * @return the Thymeleaf template name.
      */
     @RequestMapping("product/new")
     public String newProduct(Model model) {
@@ -37,7 +37,7 @@ public class ProductController {
      * Create product result mapping.
      *
      * @param product The product to create.
-     * @return the Thymleaf template name.
+     * @return the Thymeleaf template name.
      */
     @RequestMapping(value = "product/create", method = RequestMethod.POST)
     public String saveProduct(Product product) {
@@ -50,7 +50,7 @@ public class ProductController {
      *
      * @param id    The id of the product to show.
      * @param model The view model
-     * @return the Thymleaf template name.
+     * @return the Thymeleaf template name.
      */
     @RequestMapping(value = "product/show/{id}")
     public String showProduct(@PathVariable Integer id, Model model) {
@@ -62,7 +62,7 @@ public class ProductController {
      * The complete product list.
      *
      * @param model The view model.
-     * @return the Thymleaf template name.
+     * @return the Thymeleaf template name.
      */
     @RequestMapping("products")
     public String list(Model model) {
@@ -74,7 +74,7 @@ public class ProductController {
      * Delete product view.
      *
      * @param id The id of the product to delete.
-     * @return the Thymleaf template name.
+     * @return the Thymeleaf template name.
      */
     @RequestMapping("product/delete/{id}")
     public String delete(@PathVariable Integer id) {

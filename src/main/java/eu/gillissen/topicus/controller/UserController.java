@@ -29,7 +29,7 @@ public class UserController {
     /**
      * Login mapping.
      *
-     * @return the Thymleaf login template name
+     * @return the Thymeleaf login template name
      */
     @RequestMapping("/login")
     public String login() {
@@ -39,7 +39,7 @@ public class UserController {
     /**
      * Register page mapping
      *
-     * @return the Thymleaf register template name
+     * @return the Thymeleaf register template name
      */
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String register() {
